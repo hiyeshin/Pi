@@ -1,9 +1,9 @@
 import os, datetime, re
 import RPi.GPIO as GPIO
-
 from flask import Flask, render_template, request, redirect, abort
 
 import requests
+import threading
 
 from Adafruit_ADS1x15 import ADS1x15
 from time import sleep
@@ -17,14 +17,14 @@ sensors = {
 app = Flask(__name__)
 app.config['CSRF_ENABLED'] = False
 
+adc = ADS1x15()
 
 def analogue():
-    adc = ADS1x15()
-
-    while True:
-        for s in sensors:
-		sensors[s]['value'] = adc.readADCSingleEnded(s)
-        	sleep(.5)
+    
+    threading.Timer(1, analogue).start()
+    for s in sensors:
+	   sensors[s]['value'] = adc.readADCSingleEnded(s)
+    #return 
 
 
 
