@@ -1,9 +1,9 @@
 import os, datetime, re
-import RPi.GPIO as GPIO
+#import RPi.GPIO as GPIO
 from flask import Flask, render_template, request, redirect, abort
 
 import requests
-import threading
+#import threading
 
 from Adafruit_ADS1x15 import ADS1x15
 from time import sleep
@@ -49,10 +49,3 @@ def index():
 # below means that it will be executed when it is starting at commmand line
 if __name__ == "__main__":
 	app.run(host = '0.0.0.0', port = 80, debug = True)
-
-
-
-
-
-
-
